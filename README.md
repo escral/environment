@@ -60,7 +60,9 @@ Then add the public key to your GitHub account: **Settings → SSH and GPG keys 
 ./play full    # full setup including i3, Kitty, wallpapers
 ```
 
-To configure git identity, copy `config.yml.example` to `config.yml`, fill in your details, and pass it via `-e`:
+When running interactively, the playbook will prompt you for your git name and email. You can leave them blank to skip git identity setup.
+
+To pre-configure git identity without prompts, copy `config.yml.example` to `config.yml`, fill in your details, and pass it via `-e`:
 
 ```bash
 cp config.yml.example config.yml
