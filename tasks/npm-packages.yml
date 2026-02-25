@@ -1,8 +1,11 @@
 - name: Install Yarn
   shell: |
-    . {{ lookup('ansible.builtin.env', 'HOME') }}/.nvm/nvm.sh && npm install -g yarn
+    export PATH="{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/fnm:$PATH"
+    eval "$(fnm env)"
+    fnm use default
+    npm install -g yarn
   args:
-    creates: "{{ lookup('env', 'HOME') }}/.nvm/versions/node/v22/bin/yarn"
+    creates: "{{ lookup('env', 'HOME') }}/.local/share/fnm/aliases/default/installation/bin/yarn"
   tags:
     - install
     - node
