@@ -59,16 +59,34 @@ ansible-playbook local.yml --tags "node,zsh"
 
 ### Option 2 — Run inside Docker (for testing)
 
-Build the image:
+**Step 1.** Build the image (automatically extracts SSH keys from `~/ssh-backup.tar.gz` if present):
 
 ```bash
 ./build-dockers
 ```
 
-Run with optional tags:
+**Step 2.** Run the full playbook:
 
 ```bash
-docker run --env TAGS="--tags install" new-computer
+docker run --rm new-computer
+```
+
+Run only specific parts using tags:
+
+```bash
+docker run --rm -e TAGS="--tags zsh,node" new-computer
+```
+
+The `install` tag is the broadest option and runs everything marked as a standard install:
+
+```bash
+docker run --rm -e TAGS="--tags install" new-computer
+```
+
+To explore the container interactively:
+
+```bash
+docker run --rm -it --entrypoint bash new-computer
 ```
 
 ## Tags
