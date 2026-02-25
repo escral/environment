@@ -1,15 +1,11 @@
-FROM ubuntu:focal AS base
+FROM ubuntu:noble AS base
 WORKDIR /usr/local/bin
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y software-properties-common curl git build-essential && \
-    apt-add-repository -y ppa:ansible/ansible && \
-    apt-get update && \
-    apt-get install -y curl git ansible build-essential && \
+    apt-get install -y software-properties-common curl git build-essential sudo ansible && \
     apt-get clean autoclean && \
-    apt-get autoremove --yes && \
-    apt-get install sudo
+    apt-get autoremove --yes
 
 FROM base AS user
 #ARG TAGS
@@ -22,9 +18,11 @@ ENV HOME=/home/alexander
 ENV USER=alexander
 
 ARG TAGS
-RUN addgroup --gid 1000 alexander
-RUN adduser --home /home/alexander --gecos alexander --uid 1000 --gid 1000 --disabled-password alexander
-RUN usermod -aG sudo alexander
+RUN userdel -r ubuntu 2>/dev/null || true && \
+    groupdel ubuntu 2>/dev/null || true && \
+    addgroup --gid 1000 alexander && \
+    adduser --home /home/alexander --gecos alexander --uid 1000 --gid 1000 --disabled-password alexander && \
+    usermod -aG sudo alexander
 USER root
 WORKDIR /home/alexander
 
