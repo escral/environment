@@ -10,42 +10,12 @@
     - install
     - node
 
-- name: Install eslint
-  community.general.yarn:
-    name: eslint
-    global: yes
-  tags:
-    - install
-    - node
-
-- name: Install Typescript server
-  community.general.yarn:
-    name: typescript-language-server
-    global: yes
-  tags:
-    - install
-    - node
-
-- name: Install Typescript
-  community.general.yarn:
-    name: typescript
-    global: yes
-  tags:
-    - install
-    - node
-
-- name: Install TS-Node
-  community.general.yarn:
-    name: ts-node
-    global: yes
-  tags:
-    - install
-    - node
-
-- name: Install PM2
-  community.general.yarn:
-    name: pm2
-    global: yes
+- name: Install global npm packages
+  shell: |
+    export PATH="{{ lookup('ansible.builtin.env', 'HOME') }}/.local/share/fnm:$PATH"
+    eval "$(fnm env)"
+    fnm use default
+    yarn global add eslint typescript-language-server typescript ts-node pm2
   tags:
     - install
     - node
