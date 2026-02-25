@@ -5,3 +5,12 @@
   tags:
     - install
     - nitrogen
+
+- name: Download Wallpapers
+  ansible.builtin.git:
+    repo: 'https://github.com/Escral/wallpapers'
+    dest: "{{ personal }}/wallpapers"
+  tags:
+    - install
+    - personal-project
+    - wallpapers

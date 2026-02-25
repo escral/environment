@@ -1,8 +1,0 @@
-- name: Wallpapers
-  ansible.builtin.git:
-    repo: 'https://github.com/Escral/wallpapers'
-    dest: "{{ personal }}/wallpapers"
-  tags:
-    - install
-    - personal-project
-    - wallpapers

@@ -30,4 +30,3 @@
     - import_tasks: tasks/apps.yml
     - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/wallpapers.yml
-    # - import_tasks: tasks/personal-projects.yml
