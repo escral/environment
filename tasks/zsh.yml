@@ -8,7 +8,7 @@
   shell: chsh -s $(which zsh)
   tags: *tags_for_zsh_tasks
 
-- name: Check that the somefile.conf exists
+- name: Check that the .oh-my-zsh exists
   stat:
     path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
   register: oh_my_stats

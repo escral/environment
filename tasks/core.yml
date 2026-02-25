@@ -1,7 +1,16 @@
 - name: Install System Packages
   become: true
   apt:
-    name: [ "curl", "htop", "lsof", "xclip", "autorandr", "build-essential", "ninja-build", "fd-find", "rofi", "ripgrep" ]
+    name: [ "curl", "htop", "lsof", "xclip", "autorandr", "build-essential", "ninja-build", "fd-find", "rofi", "ripgrep", "unzip" ]
+  tags:
+    - install
+    - core
+
+- name: Ensure ~/.local/bin exists
+  file:
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.local/bin"
+    state: directory
+    mode: '0755'
   tags:
     - install
     - core
