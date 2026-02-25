@@ -18,7 +18,6 @@
     - import_tasks: tasks/zsh.yml
     - import_tasks: tasks/vim.yml
     - import_tasks: tasks/core.yml
-    - import_tasks: tasks/window-manager.yml
     - import_tasks: tasks/javascript.yml
     - import_tasks: tasks/npm-packages.yml
     - import_tasks: tasks/productivity.yml
@@ -27,6 +26,7 @@
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/docker.yml
     - import_tasks: tasks/php.yml
+    - import_tasks: tasks/window-manager.yml
     - import_tasks: tasks/apps.yml
     - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/wallpapers.yml

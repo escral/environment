@@ -1,0 +1,29 @@
+- hosts: localhost
+  vars:
+    source_key: "./.ssh/id_rsa"
+    dest_key: "{{ lookup('ansible.builtin.env', 'HOME') }}/.ssh/id_rsa"
+    personal: "{{ lookup('env', 'HOME') }}/personal"
+    www: "/var/www"
+  pre_tasks:
+  - name: Update Apt
+    become: true
+    apt:
+      force_apt_get: true
+      update_cache: true
+    tags:
+      - install
+      - core
+  tasks:
+    - import_tasks: tasks/ssh.yml
+    - import_tasks: tasks/zsh.yml
+    - import_tasks: tasks/vim.yml
+    - import_tasks: tasks/core.yml
+    - import_tasks: tasks/javascript.yml
+    - import_tasks: tasks/npm-packages.yml
+    - import_tasks: tasks/productivity.yml
+    - import_tasks: tasks/git.yml
+    - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/docker.yml
+    - import_tasks: tasks/php.yml
+    - import_tasks: tasks/apps.yml
+    - import_tasks: tasks/nvim.yml

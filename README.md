@@ -1,6 +1,13 @@
 # Environment Setup
 
-Ansible-based automated setup for a personal Ubuntu workstation. Installs and configures shell, editor, window manager, Node.js/Bun toolchain, and applications.
+Ansible-based automated setup for a personal Ubuntu workstation. Installs and configures shell, editor, Node.js/Bun toolchain, Docker, PHP, and applications.
+
+## Playbooks
+
+| Playbook | File                    | Description                                                  |
+|----------|-------------------------|--------------------------------------------------------------|
+| `base`   | `playbooks/base.yml`    | Core setup: shell, editors, git, node, docker, php, apps     |
+| `full`   | `playbooks/full.yml`    | Everything in base + i3, Kitty terminal, wallpapers          |
 
 ## Prerequisites
 
@@ -25,7 +32,7 @@ cp ~/.ssh/id_ed25519.pub .ssh/id_rsa.pub
 
 Then add the public key to your GitHub account: **Settings → SSH and GPG keys → New SSH key**, and paste the contents of `.ssh/id_rsa.pub`.
 
-> The `personal-projects.yml` task (currently commented out in `local.yml`) clones private repositories and requires this SSH key to be working before it can be enabled.
+> The `personal-projects.yml` task (currently commented out in the playbooks) clones private repositories and requires this SSH key to be working before it can be enabled.
 
 ## Bootstrap
 
@@ -45,16 +52,19 @@ Then add the public key to your GitHub account: **Settings → SSH and GPG keys 
   id_rsa.pub
 ```
 
-**Step 3.** Run the full playbook:
+**Step 3.** Run a playbook:
 
 ```bash
-./play
+./play         # runs base playbook (default)
+./play base    # same as above
+./play full    # full setup including i3, Kitty, wallpapers
 ```
 
 Or run only specific parts using tags (see [Tags](#tags) below):
 
 ```bash
-ansible-playbook local.yml --tags "node,zsh"
+./play base --tags "node,zsh"
+./play full --tags "wm"
 ```
 
 ### Option 2 — Run inside Docker (for testing)
@@ -65,16 +75,18 @@ ansible-playbook local.yml --tags "node,zsh"
 ./build-dockers
 ```
 
-**Step 2.** Run the full playbook:
+**Step 2.** Run a playbook:
 
 ```bash
-docker run --rm new-computer
+docker run --rm new-computer                          # base (default)
+docker run --rm -e PLAYBOOK=full new-computer         # full setup
 ```
 
 Run only specific parts using tags:
 
 ```bash
 docker run --rm -e TAGS="--tags zsh,node" new-computer
+docker run --rm -e PLAYBOOK=full -e TAGS="--tags wm" new-computer
 ```
 
 The `install` tag is the broadest option and runs everything marked as a standard install:

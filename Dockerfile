@@ -28,5 +28,7 @@ WORKDIR /home/alexander
 
 FROM user
 COPY . .
-CMD ["sh", "-c", "ansible-playbook $TAGS local.yml"]
+ARG PLAYBOOK=base
+ENV PLAYBOOK=${PLAYBOOK}
+CMD ["sh", "-c", "ansible-playbook $TAGS playbooks/${PLAYBOOK}.yml"]
 
