@@ -1,7 +1,8 @@
 - name: Install Yarn
-  npm:
-    name: yarn
-    global: yes
+  shell: |
+    . {{ lookup('ansible.builtin.env', 'HOME') }}/.nvm/nvm.sh && npm install -g yarn
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.nvm/versions/node/v22/bin/yarn"
   tags:
     - install
     - node

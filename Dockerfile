@@ -3,7 +3,7 @@ WORKDIR /usr/local/bin
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y software-properties-common curl git build-essential sudo ansible && \
+    apt-get install -y software-properties-common curl git build-essential sudo ansible unzip && \
     apt-get clean autoclean && \
     apt-get autoremove --yes
 
