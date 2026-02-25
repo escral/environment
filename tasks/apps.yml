@@ -1,8 +1,33 @@
+- name: Add VSCode GPG key
+  become: true
+  shell: |
+    install -m 0755 -d /etc/apt/keyrings
+    curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /etc/apt/keyrings/microsoft.gpg
+    chmod a+r /etc/apt/keyrings/microsoft.gpg
+  args:
+    creates: /etc/apt/keyrings/microsoft.gpg
+  tags:
+    - install
+    - apps
+    - vscode
+
+- name: Add VSCode apt repository
+  become: true
+  shell: |
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/code stable main" \
+      > /etc/apt/sources.list.d/vscode.list
+    apt-get update
+  args:
+    creates: /etc/apt/sources.list.d/vscode.list
+  tags:
+    - install
+    - apps
+    - vscode
+
 - name: Install VSCode
   become: true
-  shell: "/usr/bin/snap install --classic code"
-  args:
-    creates: /snap/bin/code
+  apt:
+    name: code
   tags:
     - install
     - apps
@@ -10,7 +35,7 @@
 
 - name: Install Chrome
   become: true
-  shell: "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install ./google-chrome-stable_current_amd64.deb && rm -f ./google-chrome-stable_current_amd64.deb"
+  shell: "curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/chrome.deb && apt install -y /tmp/chrome.deb && rm -f /tmp/chrome.deb"
   tags:
     - install
     - apps
