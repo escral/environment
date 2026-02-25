@@ -25,6 +25,8 @@
     - import_tasks: tasks/git.yml
     - import_tasks: tasks/terminal.yml
     - import_tasks: tasks/dotfiles.yml
+    - import_tasks: tasks/docker.yml
+    - import_tasks: tasks/php.yml
     - import_tasks: tasks/apps.yml
     - import_tasks: tasks/nvim.yml
     - import_tasks: tasks/wallpapers.yml

@@ -1,6 +1,8 @@
 - name: Install VSCode
   become: true
-  shell: "snap install --classic code"
+  shell: "/usr/bin/snap install --classic code"
+  args:
+    creates: /snap/bin/code
   tags:
     - install
     - apps

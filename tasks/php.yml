@@ -1,0 +1,41 @@
+- name: Add PHP PPA repository
+  become: true
+  shell: |
+    add-apt-repository -y ppa:ondrej/php
+    apt-get update
+  args:
+    creates: /etc/apt/sources.list.d/ondrej-ubuntu-php-*.list
+  tags:
+    - install
+    - php
+
+- name: Install PHP and extensions
+  become: true
+  apt:
+    name:
+      - php8.4
+      - php8.4-cli
+      - php8.4-fpm
+      - php8.4-mbstring
+      - php8.4-xml
+      - php8.4-curl
+      - php8.4-zip
+      - php8.4-intl
+      - php8.4-bcmath
+      - php8.4-mysql
+      - php8.4-pgsql
+      - php8.4-redis
+  tags:
+    - install
+    - php
+
+- name: Install Composer
+  become: true
+  shell: |
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+  args:
+    creates: /usr/local/bin/composer
+  tags:
+    - install
+    - php
+    - composer
