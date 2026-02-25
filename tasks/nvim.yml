@@ -12,7 +12,7 @@
     curl -Lo {{ lookup('env', 'HOME') }}/nvim.appimage https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && \
     chmod u+x {{ lookup('env', 'HOME') }}/nvim.appimage && \
     sudo ln -s {{ lookup('env', 'HOME') }}/nvim.appimage /usr/local/bin/nvim && \
-    chmod u+x c/usr/local/bin/nvim
+    chmod u+x /usr/local/bin/nvim
   tags:
     - install
     - neovim

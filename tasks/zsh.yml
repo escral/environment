@@ -10,7 +10,7 @@
 
 - name: Check that the somefile.conf exists
   stat:
-    path: /home/alexander/.oh-my-zsh
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
   register: oh_my_stats
   tags: *tags_for_zsh_tasks
 
@@ -18,7 +18,7 @@
   shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
   tags: *tags_for_zsh_tasks
   when: oh_my_stats.stat.exists == False
-  become_user: alexander
+  become_user: "{{ lookup('env', 'USER') }}"
 
 - name: Install zsh-autosuggestions
   ansible.builtin.git:

@@ -3,6 +3,7 @@
   apt: 
     name: [ "kitty" ]
   tags:
+    - install
     - terminal
     - kitty
 
@@ -10,6 +11,7 @@
   become: true
   shell: "update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator `which kitty` 50"
   tags:
+    - install
     - terminal
     - kitty
 
@@ -18,5 +20,6 @@
   apt: 
     name: [ "imagemagick" ]
   tags:
+    - install
     - terminal
     - kitty

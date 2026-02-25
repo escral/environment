@@ -1,10 +1,43 @@
 #!/usr/bin/env bash
-# Undo node
-npm uninstall -g yarn typescript-language-server typescript
-sudo apt purge nodejs npm
-rm /usr/local/lib/node_modules/n/bin/n
-rm /usr/local/bin/n
-rm /usr/local/bin/node
 
-# Undo Core Install
-sudo apt -y purge curl htop stow tmux build-essential wireshark golang fzf lsof kdenlive i3 gimp ccache ninja-build yarn python3-pip xclip slack dconf-editor nvidia-settings brave-browser pavucontrol clangd screenkey lua tldr
+# javascript (nvm, node, bun)
+yarn global remove eslint typescript-language-server typescript ts-node pm2
+rm -rf "$HOME/.nvm"
+rm -rf "$HOME/.bun"
+
+# core
+sudo apt -y purge curl htop lsof xclip autorandr build-essential ninja-build fd-find rofi ripgrep stow
+
+# zsh
+sudo apt -y purge zsh
+rm -rf "$HOME/.oh-my-zsh"
+
+# vim
+sudo apt -y purge vim
+
+# nvim
+rm -f "$HOME/nvim.appimage"
+sudo rm -f /usr/local/bin/nvim
+rm -rf "$HOME/.local/share/nvim"
+
+# terminal
+sudo apt -y purge kitty imagemagick
+
+# window manager
+sudo apt -y purge i3 numlockx volumeicon-alsa maim xdotool
+
+# apps
+sudo snap remove code
+sudo apt -y purge google-chrome-stable
+
+# wallpapers
+sudo apt -y purge nitrogen
+
+# productivity
+sudo apt -y purge fzf
+rm -rf "$HOME/.config/fzf"
+
+# dotfiles
+rm -rf "$HOME/.dotfiles"
+
+sudo apt -y autoremove

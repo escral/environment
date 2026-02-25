@@ -1,0 +1,27 @@
+- name: Install nvm
+  shell: |
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.nvm/nvm.sh"
+  tags:
+    - install
+    - node
+
+- name: Install Node.js
+  shell: |
+    . {{ lookup('ansible.builtin.env', 'HOME') }}/.nvm/nvm.sh && nvm install v22
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.nvm/versions/node/v22"
+  tags:
+    - install
+    - node
+
+- name: Install Bun
+  shell: |
+    curl -fsSL https://bun.sh/install | bash
+  args:
+    creates: "{{ lookup('env', 'HOME') }}/.bun/bin/bun"
+  tags:
+    - install
+    - node
+    - bun
