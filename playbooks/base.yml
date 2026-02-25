@@ -35,4 +35,3 @@
     - import_tasks: ../tasks/docker.yml
     - import_tasks: ../tasks/php.yml
     - import_tasks: ../tasks/apps.yml
-    - import_tasks: ../tasks/nvim.yml
