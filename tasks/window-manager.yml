@@ -1,7 +1,7 @@
 - name: Install System Packages
   become: true
   apt:
-    name: [ "i3", "rofi", "numlockx", "volumeicon-alsa" ]
+    name: [ "i3", "rofi", "numlockx", "volumeicon-alsa", "maim", "xdotool" ]
   tags:
     - install
     - wm

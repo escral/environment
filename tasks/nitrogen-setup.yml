@@ -1,0 +1,7 @@
+- name: Install Nitrogen
+  become: true
+  apt: 
+    name: nitrogen
+  tags:
+    - install
+    - nitrogen

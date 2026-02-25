@@ -28,4 +28,5 @@
     - import_tasks: tasks/dotfiles.yml
     - import_tasks: tasks/apps-setup.yml
     - import_tasks: tasks/nvim-setup.yml
-#    - import_tasks: tasks/personal-projects.yml
+    - import_tasks: tasks/nitrogen-setup.yml
+    # - import_tasks: tasks/personal-projects.yml
