@@ -6,13 +6,21 @@
     - install
     - neovim
 
-- name: Install Neovim
+- name: Add Neovim PPA
   become: true
   shell: |
-    curl -Lo {{ lookup('env', 'HOME') }}/nvim.appimage https://github.com/neovim/neovim/releases/download/stable/nvim.appimage && \
-    chmod u+x {{ lookup('env', 'HOME') }}/nvim.appimage && \
-    sudo ln -s {{ lookup('env', 'HOME') }}/nvim.appimage /usr/local/bin/nvim && \
-    chmod u+x /usr/local/bin/nvim
+    add-apt-repository -y ppa:neovim-ppa/stable
+    apt-get update
+  args:
+    creates: /etc/apt/sources.list.d/neovim-ppa-ubuntu-stable-*.list
+  tags:
+    - install
+    - neovim
+
+- name: Install Neovim
+  become: true
+  apt:
+    name: neovim
   tags:
     - install
     - neovim
