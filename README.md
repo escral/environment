@@ -55,10 +55,26 @@ Then add the public key to your GitHub account: **Settings → SSH and GPG keys 
 **Step 3.** Run a playbook:
 
 ```bash
-./play         # runs base playbook (default)
+./play         # runs base playbook (default), prompts for git name/email
 ./play base    # same as above
 ./play full    # full setup including i3, Kitty, wallpapers
 ```
+
+To configure git identity, copy `config.yml.example` to `config.yml`, fill in your details, and pass it via `-e`:
+
+```bash
+cp config.yml.example config.yml
+# edit config.yml with your git name and email
+./play base -e @config.yml
+```
+
+Or pass values directly on the command line:
+
+```bash
+./play base -e "git_name='Your Name' git_email=you@example.com"
+```
+
+If neither is provided, the git identity tasks are skipped.
 
 Or run only specific parts using tags (see [Tags](#tags) below):
 
