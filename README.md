@@ -52,6 +52,12 @@ Then add the public key to your GitHub account: **Settings → SSH and GPG keys 
   id_rsa.pub
 ```
 
+If you have an SSH backup archive, extract it directly into the repo's `.ssh/` folder:
+
+```bash
+tar -xzf ~/ssh-backup.tar.gz -C .ssh/ --strip-components=1
+```
+
 **Step 3.** Run a playbook:
 
 ```bash

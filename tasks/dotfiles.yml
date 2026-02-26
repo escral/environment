@@ -9,12 +9,18 @@
 
 - name: Cloning .dotfiles
   ansible.builtin.git:
-    repo: 'git@github.com:Escral/.dotfiles.git'
+    repo: 'https://github.com/Escral/.dotfiles.git'
     dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.dotfiles"
     recursive: yes
     update: yes
-    accept_hostkey: yes
     version: master
+  tags:
+    - install
+    - dotfiles
+    - stow
+
+- name: Switch .dotfiles remote to SSH
+  shell: git -C {{ lookup('ansible.builtin.env', 'HOME') }}/.dotfiles remote set-url origin git@github.com:Escral/.dotfiles.git
   tags:
     - install
     - dotfiles

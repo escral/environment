@@ -8,8 +8,15 @@
 
 - name: Download Wallpapers
   ansible.builtin.git:
-    repo: 'git@github.com:Escral/wallpapers.git'
+    repo: 'https://github.com/Escral/wallpapers.git'
     dest: "{{ personal }}/wallpapers"
+  tags:
+    - install
+    - personal-project
+    - wallpapers
+
+- name: Switch wallpapers remote to SSH
+  shell: git -C {{ personal }}/wallpapers remote set-url origin git@github.com:Escral/wallpapers.git
   tags:
     - install
     - personal-project
