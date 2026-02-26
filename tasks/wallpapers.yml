@@ -8,7 +8,7 @@
 
 - name: Download Wallpapers
   ansible.builtin.git:
-    repo: 'https://github.com/Escral/wallpapers'
+    repo: 'git@github.com:Escral/wallpapers.git'
     dest: "{{ personal }}/wallpapers"
   tags:
     - install
