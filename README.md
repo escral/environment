@@ -147,7 +147,7 @@ Run subsets of tasks by passing `--tags`:
 | `ssh`          | SSH key setup                         |
 | `wm`           | Window manager (i3)                   |
 | `terminal`     | Kitty terminal                        |
-| `apps`         | VSCode, Chrome, Cursor                |
+| `apps`         | VSCode, Chrome                        |
 | `git-personal` | Git global identity                   |
 | `productivity` | fzf + fzf-marks                       |
 
