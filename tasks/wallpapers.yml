@@ -5,6 +5,7 @@
   tags:
     - install
     - nitrogen
+    - wallpapers
 
 - name: Download Wallpapers
   ansible.builtin.git:
