@@ -36,7 +36,22 @@
 - name: Install Chrome
   become: true
   shell: "curl -fsSL https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /tmp/chrome.deb && apt install -y /tmp/chrome.deb && rm -f /tmp/chrome.deb"
+  args:
+    creates: /usr/bin/google-chrome-stable
   tags:
     - install
     - apps
     - chrome
+
+- name: Install Cursor
+  become: true
+  shell: |
+    curl -fsSL "https://api2.cursor.sh/updates/download/golden/linux-{{ 'arm64' if ansible_architecture == 'aarch64' else 'x64' }}-deb/cursor/{{ cursor_version | default('2.5') }}" -o /tmp/cursor.deb
+    apt install -y /tmp/cursor.deb
+    rm -f /tmp/cursor.deb
+  args:
+    creates: /usr/bin/cursor
+  tags:
+    - install
+    - apps
+    - cursor

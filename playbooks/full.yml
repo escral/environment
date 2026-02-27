@@ -1,19 +1,32 @@
 - hosts: localhost
-  vars_prompt:
-    - name: git_name
-      prompt: "Git name"
-      private: false
-      default: ""
-    - name: git_email
-      prompt: "Git email"
-      private: false
-      default: ""
+  # vars_prompt:
+  #   - name: git_name
+  #     prompt: "Git name"
+  #     private: false
+  #     default: ""
+  #   - name: git_email
+  #     prompt: "Git email"
+  #     private: false
+  #     default: ""
   vars:
     source_key: "../.ssh/id_rsa"
     dest_key: "{{ lookup('ansible.builtin.env', 'HOME') }}/.ssh/id_rsa"
     personal: "{{ lookup('env', 'HOME') }}/personal"
     www: "/var/www"
   pre_tasks:
+  - name: Remove conflicting VSCode apt sources
+    become: true
+    file:
+      path: "{{ item }}"
+      state: absent
+    loop:
+      - /etc/apt/sources.list.d/vscode.list
+      - /etc/apt/sources.list.d/vscode.sources
+    tags:
+      - install
+      - core
+      - apps
+      - vscode
   - name: Update Apt
     become: true
     apt:
@@ -24,13 +37,13 @@
       - core
   tasks:
     - import_tasks: ../tasks/ssh.yml
+    - import_tasks: ../tasks/core.yml
     - import_tasks: ../tasks/zsh.yml
     - import_tasks: ../tasks/vim.yml
-    - import_tasks: ../tasks/core.yml
     - import_tasks: ../tasks/javascript.yml
     - import_tasks: ../tasks/npm-packages.yml
     - import_tasks: ../tasks/productivity.yml
-    - import_tasks: ../tasks/git.yml
+    # - import_tasks: ../tasks/git.yml
     - import_tasks: ../tasks/terminal.yml
     - import_tasks: ../tasks/dotfiles.yml
     - import_tasks: ../tasks/docker.yml

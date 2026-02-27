@@ -58,6 +58,11 @@ If you have an SSH backup archive, extract it directly into the repo's `.ssh/` f
 tar -xzf ~/ssh-backup.tar.gz -C .ssh/ --strip-components=1
 ```
 
+**Step 3.** Make sure `./play` is executable:
+```bash
+sudo chmod -x ./play
+```
+
 **Step 3.** Run a playbook:
 
 ```bash
@@ -142,7 +147,7 @@ Run subsets of tasks by passing `--tags`:
 | `ssh`          | SSH key setup                         |
 | `wm`           | Window manager (i3)                   |
 | `terminal`     | Kitty terminal                        |
-| `apps`         | VSCode, Chrome                        |
+| `apps`         | VSCode, Chrome, Cursor                |
 | `git-personal` | Git global identity                   |
 | `productivity` | fzf + fzf-marks                       |
 
