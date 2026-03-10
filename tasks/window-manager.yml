@@ -6,6 +6,15 @@
     - install
     - wm
 
+- name: Install dunst and papirus-icon-theme
+  become: true
+  apt:
+    name: [ "dunst", "papirus-icon-theme" ]
+  tags:
+    - install
+    - wm
+    - dunst
+
 #- name: dconf i3
 #  shell: update-alternatives --install /usr/bin/x-session-manager x-session-manager /#usr/bin/i3 60 
 #  tags:
