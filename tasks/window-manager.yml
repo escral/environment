@@ -9,7 +9,7 @@
 - name: Install dunst and papirus-icon-theme
   become: true
   apt:
-    name: [ "dunst", "papirus-icon-theme" ]
+    name: [ "dunst", "papirus-icon-theme", "breeze-icon-theme" ]
   tags:
     - install
     - wm
