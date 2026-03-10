@@ -30,4 +30,12 @@
     - core
     - language
 
-    
+- name: Install just
+  become: true
+  community.general.snap:
+    name: just
+    channel: edge
+    classic: true
+  tags:
+    - install
+    - core
