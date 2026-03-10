@@ -14,3 +14,11 @@
     - install
     - productivity
     - fzf
+
+- name: Install Justfile
+  become: true
+  apt:
+    name: just
+  tags:
+      - install
+      - productivity
