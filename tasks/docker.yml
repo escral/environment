@@ -39,6 +39,14 @@
     - install
     - docker
 
+- name: Install dtop
+  shell: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/amir20/dtop/releases/latest/download/dtop-installer.sh | sh
+  args:
+    executable: /bin/bash
+  tags:
+    - install
+    - docker
+
 - name: Add user to docker group
   become: true
   user:
