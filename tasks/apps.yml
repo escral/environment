@@ -43,3 +43,17 @@
     - apps
     - chrome
 
+- name: Install Cursor
+  become: true
+  shell: |
+    curl -fsSL -L 'https://api2.cursor.sh/updates/download/golden/linux-x64-deb/cursor/3.0' -o /tmp/cursor.deb
+    chmod +x /tmp/cursor.deb
+    apt install -y /tmp/cursor.deb
+    rm -f /tmp/cursor.deb
+  args:
+    creates: /usr/share/cursor/bin/cursor
+  tags:
+    - install
+    - apps
+    - cursor
+
